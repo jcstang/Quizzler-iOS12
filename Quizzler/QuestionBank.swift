@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+class QuestionBank {
+    var listOfQuestions : Array<Question>
+    
+    init(someQuestion: Question) {
+        self.listOfQuestions = Array()
+        self.listOfQuestions.append(someQuestion)
+    }
+}

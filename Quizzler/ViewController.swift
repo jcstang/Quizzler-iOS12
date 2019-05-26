@@ -42,15 +42,16 @@ class ViewController: UIViewController {
         
         // move and display next question
         questionNumber += 1
-        if allQuestions.list.endIndex > questionNumber {
-            //questionNumber += 1
-            //questionLabel.text = allQuestions.list[questionNumber].questionText
-        }
-        else {
-            print("end!")
-        }
+//        if allQuestions.list.endIndex > questionNumber {
+//            //questionNumber += 1
+//            //questionLabel.text = allQuestions.list[questionNumber].questionText
+//        }
+//        else {
+//            print("end!")
+//        }
         //questionNumber += 1
         //questionLabel.text = allQuestions.list[questionNumber].questionText
+        nextQuestion()
         
     }
     
@@ -61,12 +62,21 @@ class ViewController: UIViewController {
     
 
     func nextQuestion() {
-        if questionNumber < 12 {
+        if questionNumber <= 12 {
             questionLabel.text = allQuestions.list[questionNumber].questionText
         }
         else {
-            print("end of quiz")
-            questionNumber = 0
+            
+            let alert = UIAlertController(title: "End of Quiz. Dang...", message: "Do you want to start over?", preferredStyle: .alert)
+            
+            let restartAction = UIAlertAction(title: "Restart", style: .default) { (UIAlertAction) in
+                //code after this action is pressed
+                self.startOver()
+            }
+            
+            alert.addAction(restartAction)
+            present(alert, animated: true, completion: nil)
+            
         }
         
     }
@@ -88,7 +98,8 @@ class ViewController: UIViewController {
     
     
     func startOver() {
-       
+        questionNumber = 0
+        nextQuestion()
     }
     
 

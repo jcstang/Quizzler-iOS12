@@ -10,12 +10,20 @@ import Foundation
 
 class Question {
     
-    let questionText : String
-    let answer : Bool
+    private let questionText : String
+    private let answer : Bool
     
     init(text: String, correctAnswer: Bool) {
         questionText = text
         answer = correctAnswer
+    }
+    
+    func getQuestionText() -> String {
+        return self.questionText
+    }
+    
+    func getAnswer() -> Bool {
+        return self.answer
     }
     
 }

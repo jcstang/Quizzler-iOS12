@@ -11,7 +11,7 @@ import Foundation
 
 class QuestionBank {
     //var listOfQuestions : Array<Question>
-    var list = [Question]()
+    private var list = [Question]()
     let listSize: Int
     
     init() {
@@ -48,6 +48,12 @@ class QuestionBank {
         
         listSize = list.count
 
+    }
+    
+    func getQuestion(indexNum: Int) -> Question {
+        
+        return list[indexNum]
+        
     }
     
 }

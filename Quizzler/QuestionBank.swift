@@ -12,6 +12,7 @@ import Foundation
 class QuestionBank {
     //var listOfQuestions : Array<Question>
     var list = [Question]()
+    let listSize: Int
     
     init() {
         // Creating a quiz item and appending it to the list
@@ -44,6 +45,8 @@ class QuestionBank {
         list.append(Question(text: "No piece of square dry paper can be folded in half more than 7 times.", correctAnswer: false))
         
         list.append(Question(text: "Chocolate affects a dog\'s heart and nervous system; a few ounces are enough to kill a small dog.", correctAnswer: true))
+        
+        listSize = list.count
 
     }
     

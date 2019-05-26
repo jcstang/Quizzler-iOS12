@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     let allQuestions: QuestionBank = QuestionBank()
     //var pickedAnswer: Bool = false
     var questionNumber: Int = 0
+    var score: Int = 0
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -76,6 +77,7 @@ class ViewController: UIViewController {
         
         if correctAnswer == answerSelected {
             print("You got it!")
+            score += 1
         }
         else {
             print("wrong")

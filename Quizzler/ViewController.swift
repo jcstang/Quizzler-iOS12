@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     let allQuestions: QuestionBank = QuestionBank()
-    var pickedAnswer: Bool = false
+    //var pickedAnswer: Bool = false
     var questionNumber: Int = 0
     
     @IBOutlet weak var questionLabel: UILabel!
@@ -28,16 +28,15 @@ class ViewController: UIViewController {
 
 
     @IBAction func answerPressed(_ sender: AnyObject) {
-        
         // tags setup on the buttons. (see main.storyboard)
+        // pass user selection to checkAnswer method.
         if sender.tag == 1 {
-            pickedAnswer = true
+            checkAnswer(answerSelected: true)
         }
         else if sender.tag == 2 {
-            pickedAnswer = false
+            checkAnswer(answerSelected: false)
         }
-        
-        checkAnswer()
+
         questionNumber += 1
         nextQuestion()
         
@@ -50,13 +49,12 @@ class ViewController: UIViewController {
     
 
     func nextQuestion() {
-        if questionNumber <= 12 {
-            //questionLabel.text = allQuestions.list[questionNumber].questionText
+        if questionNumber < allQuestions.listSize {
             questionLabel.text = allQuestions.getQuestion(indexNum: questionNumber).getQuestionText()
         }
         else {
             
-            let alert = UIAlertController(title: "End of Quiz. Dang...", message: "Do you want to start over?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Dang....End of Quiz.", message: "Do you want to start over?", preferredStyle: .alert)
             
             let restartAction = UIAlertAction(title: "Restart", style: .default) { (UIAlertAction) in
                 //code after this action is pressed
@@ -71,12 +69,12 @@ class ViewController: UIViewController {
     }
     
     
-    func checkAnswer() {
+    func checkAnswer(answerSelected: Bool) {
         // does the picked answer and the correct answer match
         //let correctAnswer = allQuestions.list[questionNumber].answer
         let correctAnswer = allQuestions.getQuestion(indexNum: questionNumber).getAnswer()
         
-        if correctAnswer == pickedAnswer {
+        if correctAnswer == answerSelected {
             print("You got it!")
         }
         else {
@@ -92,9 +90,6 @@ class ViewController: UIViewController {
     }
     
     func displayQuestion() {
-        //let theQuestion = allQuestions.list[questionNumber]
-       // questionLabel.text = allQuestions.getQuestion(indexNum: questionNumber).questionText
-        //questionLabel.text = theQuestion.questionText
         questionLabel.text = allQuestions.getQuestion(indexNum: questionNumber).getQuestionText()
     }
 

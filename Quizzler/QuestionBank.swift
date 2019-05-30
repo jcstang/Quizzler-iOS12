@@ -51,8 +51,11 @@ class QuestionBank {
     }
     
     func getQuestion(indexNum: Int) -> Question {
-        
-        return list[indexNum]
+        var retVal: Question = Question(text: "error question", correctAnswer: true)
+        if indexNum < listSize {
+            retVal = list[indexNum]
+        }
+        return retVal
         
     }
     

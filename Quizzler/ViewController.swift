@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         displayQuestion()
+        updateUI()
         
     }
 
@@ -39,19 +40,28 @@ class ViewController: UIViewController {
         }
 
         questionNumber += 1
+        
         nextQuestion()
         
     }
     
     
     func updateUI() {
-      
+        scoreLabel.text = "Score: \(score)"
+        progressLabel.text = "\(questionNumber + 1) / 13"
+        
+        progressBar.frame.size.width = (view.frame.size.width / 13) * CGFloat(questionNumber + 1)
+        
     }
     
 
     func nextQuestion() {
         if questionNumber < allQuestions.listSize {
-            questionLabel.text = allQuestions.getQuestion(indexNum: questionNumber).getQuestionText()
+            //questionLabel.text = allQuestions.getQuestion(indexNum: questionNumber).getQuestionText()
+            displayQuestion()
+            
+            updateUI()
+            
         }
         else {
             
@@ -88,6 +98,7 @@ class ViewController: UIViewController {
     
     func startOver() {
         questionNumber = 0
+        score = 0
         nextQuestion()
     }
     
